@@ -6,20 +6,17 @@ import matplotlib.font_manager as fm
 import seaborn as sns
 import os
 
-# 1) ttf 파일 경로
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-FONT_PATH = os.path.join(BASE_DIR, "fonts", "NotoSansKR-Regular.ttf")
+# 1) 폰트 파일 경로
+BASE_DIR   = os.path.dirname(os.path.abspath(__file__))
+FONT_PATH  = os.path.join(BASE_DIR, "fonts", "NotoSansKR-Regular.ttf")
 
-# 2) 폰트 매니저에 등록하고 캐시 리빌드
+# 2) 폰트 등록 (addfont만으로 충분)
 fm.fontManager.addfont(FONT_PATH)
-fm._rebuild()   # 캐시 재생성
+font_prop  = fm.FontProperties(fname=FONT_PATH)
+font_name  = font_prop.get_name()
 
 # 3) rcParams에 폰트 설정
-font_prop = fm.FontProperties(fname=FONT_PATH)
-font_name = font_prop.get_name()
-
-plt.rcParams["font.family"] = "sans-serif"
-plt.rcParams["font.sans-serif"] = [font_name]
+plt.rcParams["font.family"]         = font_name
 plt.rcParams["axes.unicode_minus"] = False
 
 st.set_page_config(page_title="우리 동네 인구 구조 시각화")
