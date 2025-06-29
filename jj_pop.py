@@ -2,7 +2,8 @@ from streamlit_option_menu import option_menu
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
-import matplotlib.font_manager as fm, FontProperties
+import matplotlib.font_manager as fm
+from matplotlib.font_manager import FontProperties
 import seaborn as sns
 import os
 
