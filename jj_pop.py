@@ -2,20 +2,20 @@ from streamlit_option_menu import option_menu
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
-import matplotlib.font_manager as fm
+import matplotlib.font_manager as fm, FontProperties
 import seaborn as sns
 import os
 
-# 1) 폰트 파일 경로
-BASE_DIR   = os.path.dirname(os.path.abspath(__file__))
-FONT_PATH  = os.path.join(BASE_DIR, "fonts", "NotoSansKR-Regular.ttf")
+# 2) 폰트 파일 경로
+BASE_DIR  = os.path.dirname(os.path.abspath(__file__))
+FONT_PATH = os.path.join(BASE_DIR, "fonts", "NotoSansKR-Regular.ttf")
 
-# 2) 폰트 등록 (addfont만으로 충분)
-fm.fontManager.addfont(FONT_PATH)
-font_prop  = fm.FontProperties(fname=FONT_PATH)
-font_name  = font_prop.get_name()
+# 3) 등록 & 프로퍼티 생성
+font_manager.fontManager.addfont(FONT_PATH)
+font_prop = FontProperties(fname=FONT_PATH)
+font_name = font_prop.get_name()
 
-# 3) rcParams에 폰트 설정
+# 4) rcParams 적용
 plt.rcParams["font.family"]         = font_name
 plt.rcParams["axes.unicode_minus"] = False
 
