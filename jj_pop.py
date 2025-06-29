@@ -2,23 +2,27 @@ from streamlit_option_menu import option_menu
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
-import matplotlib.font_manager as fm
-from matplotlib.font_manager import FontProperties
 import seaborn as sns
+import matplotlib.font_manager as fm               # font_manager 모듈
+from matplotlib.font_manager import FontProperties  # FontProperties 클래스
 import os
 
-# 2) 폰트 파일 경로
-BASE_DIR  = os.path.dirname(os.path.abspath(__file__))
+# 1) 폰트 파일 경로 계산
+BASE_DIR  = os.path.dirname(os.path.abspath(__file__))  
 FONT_PATH = os.path.join(BASE_DIR, "fonts", "NotoSansKR-Regular.ttf")
 
-# 3) 등록 & 프로퍼티 생성
-font_manager.fontManager.addfont(FONT_PATH)
-font_prop = FontProperties(fname=FONT_PATH)
-font_name = font_prop.get_name()
+# 2) 파일 존재 확인
+if not os.path.isfile(FONT_PATH):
+    st.error(f"폰트를 찾을 수 없습니다: {FONT_PATH}")
+else:
+    # 3) 폰트 등록
+    fm.fontManager.addfont(FONT_PATH)
+    prop    = FontProperties(fname=FONT_PATH)
+    font_nm = prop.get_name()
 
-# 4) rcParams 적용
-plt.rcParams["font.family"]         = font_name
-plt.rcParams["axes.unicode_minus"] = False
+    # 4) matplotlib 전역 설정
+    plt.rcParams["font.family"]         = font_nm
+    plt.rcParams["axes.unicode_minus"] = False
 
 st.set_page_config(page_title="우리 동네 인구 구조 시각화")
 
